@@ -19,6 +19,10 @@ public class Spawner : MonoBehaviour
 	public GameObject Spawn(string prefab_name, int x, int y)
 	{
 		GameObject result = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/" + prefab_name));
+		float f_x = 0;
+		float f_y = 0;
+		Game.Grid2Vec(x, y, ref f_x, ref f_y);
+		result.transform.position = new Vector3(f_x, f_y, 0);
 		return result;
 	}
 }

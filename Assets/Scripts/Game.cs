@@ -10,12 +10,26 @@ public class Game : MonoBehaviour
     void Start()
     {
 		mSpawner = GameObject.FindObjectOfType<Spawner>().GetComponent<Spawner>();
-		mSpawner.Spawn("PrefabMan", 0, 0);
-    }
+		GameObject man = mSpawner.Spawn("PrefabMan", 0, 0);
+		Mover mover = man.GetComponent<Mover>();
+		mover.SetSpeed(1);
+		mover.MoveTo(2, 2);
+
+		GameObject woman = mSpawner.Spawn("PrefabWoman", 0, 1);
+		woman.GetComponent<Mover>().SetSpeed(1);
+		woman.GetComponent<Mover>().MoveTo(2, 0);
+
+	}
 
     // Update is called once per frame
     void Update()
     {
         
     }
+
+	public static void Grid2Vec(int grid_x, int grid_y, ref float x, ref float y)
+	{
+		x = grid_x + 0.5f;
+		y = grid_y + 0.5f;
+	}
 }
