@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+
+	public enum Mode
+	{
+		BUILDING,
+		RUNNING
+	};
+
 	protected Spawner mSpawner;
+	protected GameUI mGameUI;
+	protected Mode mCurrentMode = Mode.RUNNING;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +28,8 @@ public class Game : MonoBehaviour
 		woman.GetComponent<Mover>().SetSpeed(1);
 		woman.GetComponent<Mover>().MoveTo(2, 0);
 
+		mGameUI = GameObject.FindObjectOfType<GameUI>().GetComponent<GameUI>();
+		mGameUI.AddMenuItem(new List<string>() { "BUILD", "RECRUIT" }, 0);
 	}
 
     // Update is called once per frame
