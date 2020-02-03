@@ -50,7 +50,7 @@ namespace Tests
 			Assert.AreEqual(0.5f, mover.transform.position.y);
 
 			mover.SetSpeed(5);
-			mover.MoveTo(1, 0);
+			mover.MoveToGrid(1, 0);
 			yield return null;
 
 			Assert.AreNotEqual(0.5f, mover.transform.position.x);

@@ -22,11 +22,11 @@ public class Game : MonoBehaviour
 		GameObject man = mSpawner.Spawn("PrefabMan", 0, 0);
 		Mover mover = man.GetComponent<Mover>();
 		mover.SetSpeed(1);
-		mover.MoveTo(2, 2);
+		mover.MoveToGrid(2, 2);
 
 		GameObject woman = mSpawner.Spawn("PrefabWoman", 0, 1);
 		woman.GetComponent<Mover>().SetSpeed(1);
-		woman.GetComponent<Mover>().MoveTo(2, 0);
+		woman.GetComponent<Mover>().MoveToGrid(2, 0);
 
 		mGameUI = GameObject.FindObjectOfType<GameUI>().GetComponent<GameUI>();
 		List<MenuItem> root_items = mGameUI.AddMenuItem(new List<string>() { "BUILD", "RECRUIT" }, 0);

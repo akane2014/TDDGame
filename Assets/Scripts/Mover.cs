@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-	public float mSpeed = 0;
+	public float mSpeed = 1;
 
 	protected float mTargetX = 0;
 	protected float mTargetY = 0;
@@ -49,8 +49,14 @@ public class Mover : MonoBehaviour
 		mSpeed = speed;
 	}
 
-	public void MoveTo(int x, int y)
+	public void MoveToGrid(int x, int y)
 	{
 		Game.Grid2Vec(x, y, ref mTargetX, ref mTargetY);
+	}
+
+	public void MoveToPosition(float x, float y)
+	{
+		mTargetX = x;
+		mTargetY = y;
 	}
 }
