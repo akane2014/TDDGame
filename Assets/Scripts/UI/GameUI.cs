@@ -5,12 +5,13 @@ using UnityEngine;
 public class GameUI : MonoBehaviour
 {
 	protected GameObject mCanvas;
-
+	protected List<MenuItem> mMenuItems;
 	static public float MENU_GAP = 88;
 
 	private void Awake()
 	{
 		mCanvas = transform.Find("Canvas").gameObject;
+		mMenuItems = new List<MenuItem>();
 	}
 	// Start is called before the first frame update
 	void Start()
@@ -24,7 +25,7 @@ public class GameUI : MonoBehaviour
         
     }
 
-	public MenuItem[] GetMenuItems()
+	public List<MenuItem> GetMenuItems()
 	{
 		List<MenuItem> items = new List<MenuItem>();
 		for (int i = 0; i < mCanvas.transform.childCount; i++ )
@@ -35,21 +36,24 @@ public class GameUI : MonoBehaviour
 				items.Add(item);
 			}
 		}
-		return items.ToArray();
+		return items;
 	}
 
-	public void AddMenuItem(List<string> items, int layer)
+	public List<MenuItem> AddMenuItem(List<string> items, int layer)
 	{
 		int item_idx = 0;
 		foreach(string item in items)
 		{
 			MenuItem menu_item = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/UI/PrefabMenuItem")).GetComponent<MenuItem>();
+			menu_item.SetLayer(layer);
 			menu_item.transform.SetParent( mCanvas.transform, true );
 			Vector3 menu_position = menu_item.GetComponent<RectTransform>().position;
 			menu_position.x += item_idx * GameUI.MENU_GAP;
 			menu_item.GetComponent<RectTransform>().position = menu_position;
 			menu_item.SetName(item);
+			mMenuItems.Add(menu_item);
 			item_idx++;
 		}
+		return mMenuItems;
 	}
 }

@@ -23,14 +23,19 @@ namespace Tests
 		}
 
 		// A Test behaves as an ordinary method
+		int click_count = 0;
+		public void TestClick()
+		{
+			click_count++;
+		}
+
 		[Test]
         public void ICanAddMenuItemsSimplePasses()
         {
 			// Use the Assert class to test conditions
-			gameUI.AddMenuItem(new List<string>( ){ "BUILD", "RECRUIT" }, 0 );
+			List<MenuItem> items = gameUI.AddMenuItem(new List<string>( ){ "BUILD", "RECRUIT" }, 0 );
 			Assert.AreEqual(2, GameObject.FindObjectsOfType<MenuItem>().Length);
 
-			MenuItem[] items = gameUI.GetMenuItems();
 			float x0 = items[0].GetComponent<RectTransform>().position.x;
 			float y0 = items[0].GetComponent<RectTransform>().position.y;
 			float x1 = items[1].GetComponent<RectTransform>().position.x;
@@ -42,6 +47,16 @@ namespace Tests
 
 			Assert.AreEqual("BUILD", items[0].mName);
 			Assert.AreEqual("RECRUIT", items[1].mName);
+
+			click_count = 0;
+			items[0].mOnClickCallback += TestClick;
+			items[0].OnClicked();
+			items[0].OnClicked();
+			Assert.AreEqual(2, click_count);
+
+			items[0].AddSubItems(new List<string>() { "DESK", "CHAIR" });
+			items[1].AddSubItems(new List<string>() { "TEACHER", "CLEANER" });
+			Assert.AreEqual(6, GameObject.FindObjectsOfType<MenuItem>().Length);
 		}
 
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use

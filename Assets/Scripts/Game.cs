@@ -29,7 +29,9 @@ public class Game : MonoBehaviour
 		woman.GetComponent<Mover>().MoveTo(2, 0);
 
 		mGameUI = GameObject.FindObjectOfType<GameUI>().GetComponent<GameUI>();
-		mGameUI.AddMenuItem(new List<string>() { "BUILD", "RECRUIT" }, 0);
+		List<MenuItem> root_items = mGameUI.AddMenuItem(new List<string>() { "BUILD", "RECRUIT" }, 0);
+		root_items[0].SetSubItems(new List<string>() { "DESK", "CHAIR" });
+		root_items[1].SetSubItems(new List<string>() { "TEACHER", "CLEANER" });
 	}
 
     // Update is called once per frame
