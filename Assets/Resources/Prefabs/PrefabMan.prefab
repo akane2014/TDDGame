@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1726723344011280276}
   - component: {fileID: 1726723344011280277}
   - component: {fileID: 684157990629358498}
+  - component: {fileID: 335057461999732733}
   m_Layer: 0
-  m_Name: Man
+  m_Name: PrefabMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,3 +95,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23374a54b075ae243a079d937fd954e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mSpeed: 1
+--- !u!58 &335057461999732733
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726723344011280278}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.05}
+  serializedVersion: 2
+  m_Radius: 0.2
