@@ -6,6 +6,8 @@ public class Mover : MonoBehaviour
 {
 	public float mSpeed = 1;
 
+	protected float mSpeedFactor = 1;
+	protected const float SPEED_FACTOR_ONCOLLISION = 0.5f;
 	protected float mTargetX = 0;
 	protected float mTargetY = 0;
 
@@ -37,7 +39,7 @@ public class Mover : MonoBehaviour
 			else
 			{
 				delta.Normalize();
-				this.transform.Translate(delta * mSpeed * Time.deltaTime);
+				this.transform.Translate(delta * mSpeed * mSpeedFactor * Time.deltaTime);
 			}
 
 			RefreshDepth();
@@ -58,5 +60,15 @@ public class Mover : MonoBehaviour
 	{
 		mTargetX = x;
 		mTargetY = y;
+	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		mSpeedFactor = SPEED_FACTOR_ONCOLLISION;
+	}
+
+	void OnCollisionExit2D(Collision2D collision)
+	{
+		mSpeedFactor = 1;
 	}
 }
